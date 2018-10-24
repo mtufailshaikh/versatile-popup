@@ -15,10 +15,10 @@ TT plugins : versatile popup
   ```
     header = '<string>';
     body = '<string>';
-    this.footer = '<string>';
-    this.showOnLoad = boolean; //default to show the popup not arrow
-    this.startDate = null; // starting date to show the widget
-    this.endDate = null; // end date of the widget to hide after passing this date
-    this.globalName =  '<string>'|| false; // popup unique name to target all popup individually if more than one popup
-    this.customVisible = boolean; // show hide popup on other pages based on current status
+    footer = '<string>';
+    showOnLoad = boolean; //default to show the popup not arrow
+    startDate = null; // starting date to show the widget
+    endDate = null; // end date of the widget to hide after passing this date
+    globalName =  '<string>'|| false; // popup unique name to target all popup individually if more than one popup
+    customVisible = boolean; // show hide popup on other pages based on current status
     ```
