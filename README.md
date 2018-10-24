@@ -21,4 +21,3 @@ TT plugins : versatile popup
     endDate = null; // end date of the widget to hide after passing this date
     globalName =  '<string>'|| false; // popup unique name to target all popup individually if more than one popup
     customVisible = boolean; // show hide popup on other pages based on current status
-    ```
