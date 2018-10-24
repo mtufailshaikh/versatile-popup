@@ -1,4 +1,4 @@
-# versatile-popup
+# Versatile  Popup
 TT plugins : versatile popup
 ```<script type="text/javascript">
     var popup = new ttPlugin.versatileCard({
