@@ -13,6 +13,7 @@ export default class TTversatilePopup {
     this.endDate = options.endDate || null; // end date of the widget to hide after passing this date
     this.globalName =  options.globalName || false; // popup unique name to target all popup individually if more than one popup
     this.customVisible = !!options.customVisible; // show hide popup on other pages based on current status
+    this.inForm = options.inForm || '';
     this.$widget = "";
   //  this.init();
   }
@@ -70,6 +71,7 @@ export default class TTversatilePopup {
       bgImage = ` style="background-image:url('${this.backgroundImage}')"`;
     }
     return `<div class="ttw-versatile ${this.globalName}">
+            ${this.inForm}
               <div class="ttw-versatile__card${showClass}">
             		<span class="ttw-versatile__close">&times;</span>
             		${this.header ? `<div class="ttw-versatile__title">
@@ -82,6 +84,7 @@ export default class TTversatilePopup {
                   ${this.footer}
                 </div> ` : ``}
               </div>
+              ${this.inForm ? '</form>': ''} 
             	<span class="ttw-versatile__open${showArrow}"><i>&rarr;</i></span>
             </div>`;
   }

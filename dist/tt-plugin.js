@@ -2596,6 +2596,7 @@ var TTversatilePopup = function () {
     this.endDate = options.endDate || null; // end date of the widget to hide after passing this date
     this.globalName = options.globalName || false; // popup unique name to target all popup individually if more than one popup
     this.customVisible = !!options.customVisible; // show hide popup on other pages based on current status
+    this.inForm = options.inForm || '';
     this.$widget = "";
     //  this.init();
   }
@@ -2734,7 +2735,7 @@ var TTversatilePopup = function () {
       if (this.backgroundImage) {
         bgImage = ' style="background-image:url(\'' + this.backgroundImage + '\')"';
       }
-      return '<div class="ttw-versatile ' + this.globalName + '">\n              <div class="ttw-versatile__card' + showClass + '">\n            \t\t<span class="ttw-versatile__close">&times;</span>\n            \t\t' + (this.header ? '<div class="ttw-versatile__title">\n            \t\t\t' + this.header + '\n            \t\t</div>' : '') + '\n              \t<div class="ttw-versatile__body"' + bgImage + '>\n              \t  ' + this.body + '\n              \t</div>\n                ' + (this.footer ? '<div class="ttw-versatile__footer">\n                  ' + this.footer + '\n                </div> ' : '') + '\n              </div>\n            \t<span class="ttw-versatile__open' + showArrow + '"><i>&rarr;</i></span>\n            </div>';
+      return '<div class="ttw-versatile ' + this.globalName + '">\n            ' + this.inForm + '\n              <div class="ttw-versatile__card' + showClass + '">\n            \t\t<span class="ttw-versatile__close">&times;</span>\n            \t\t' + (this.header ? '<div class="ttw-versatile__title">\n            \t\t\t' + this.header + '\n            \t\t</div>' : '') + '\n              \t<div class="ttw-versatile__body"' + bgImage + '>\n              \t  ' + this.body + '\n              \t</div>\n                ' + (this.footer ? '<div class="ttw-versatile__footer">\n                  ' + this.footer + '\n                </div> ' : '') + '\n              </div>\n              ' + (this.inForm ? '</form>' : '') + ' \n            \t<span class="ttw-versatile__open' + showArrow + '"><i>&rarr;</i></span>\n            </div>';
     }
   }]);
 
