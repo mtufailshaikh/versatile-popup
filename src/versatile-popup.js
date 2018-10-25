@@ -5,9 +5,9 @@ import Cookies from './cookies';
 export default class TTversatilePopup {
 
   constructor(options = {}) {
-    this.header = options.header || '';
+    this.header = options.header || false;
     this.body = options.body || '';
-    this.footer = options.footer || '';
+    this.footer = options.footer || false;
     this.showOnLoad = !!options.showOnLoad; //default to show the popup not arrow
     this.startDate = options.startDate || null; // starting date to show the widget
     this.endDate = options.endDate || null; // end date of the widget to hide after passing this date
@@ -72,15 +72,15 @@ export default class TTversatilePopup {
     return `<div class="ttw-versatile ${this.globalName}">
               <div class="ttw-versatile__card${showClass}">
             		<span class="ttw-versatile__close">&times;</span>
-            		<div class="ttw-versatile__title">
+            		${this.header ? `<div class="ttw-versatile__title">
             			${this.header}
-            		</div>
+            		</div>` : ``}
               	<div class="ttw-versatile__body"${bgImage}>
               	  ${this.body}
               	</div>
-                <div class="ttw-versatile__footer">
+                ${this.footer ? `<div class="ttw-versatile__footer">
                   ${this.footer}
-                </div>
+                </div> ` : ``}
               </div>
             	<span class="ttw-versatile__open${showArrow}"><i>&rarr;</i></span>
             </div>`;

@@ -2354,7 +2354,50 @@ var Cookies = function () {
     _classCallCheck(this, Cookies);
   }
 
-  _createClass(Cookies, null, [{
+  _createClass(Cookies, [{
+    key: 'create',
+    value: function create(name, value) {
+      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      var str = Cookies.encode(name) + '=' + Cookies.encode(value);
+
+      if (value == null) {
+        options.maxage = -1;
+      }
+
+      if (options.maxage) {
+        var date = new Date();
+        date.setTime(date.getTime() + options.maxage);
+        options.expires = date.toUTCString();
+        //options.expires = new Date((new Date()).getTime() + options.maxage)
+      }
+
+      if (options.path) {
+        str += '; path=' + options.path;
+      }
+      if (options.domain) {
+        str += '; domain=' + options.domain;
+      }
+      if (options.expires) {
+        str += '; expires=' + options.expires;
+      }
+      if (options.secure) {
+        str += '; secure';
+      }
+
+      document.cookie = str;
+    }
+  }, {
+    key: 'get',
+    value: function get(name) {
+      var cookies = Cookies.parse(document.cookie);
+      if (name) {
+        return cookies[name] || null;
+      } else {
+        return cookies;
+      }
+    }
+  }], [{
     key: 'write',
     value: function write(name, value) {
       var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -2545,9 +2588,9 @@ var TTversatilePopup = function () {
 
     _classCallCheck(this, TTversatilePopup);
 
-    this.header = options.header || '';
+    this.header = options.header || false;
     this.body = options.body || '';
-    this.footer = options.footer || '';
+    this.footer = options.footer || false;
     this.showOnLoad = !!options.showOnLoad; //default to show the popup not arrow
     this.startDate = options.startDate || null; // starting date to show the widget
     this.endDate = options.endDate || null; // end date of the widget to hide after passing this date
@@ -2691,7 +2734,7 @@ var TTversatilePopup = function () {
       if (this.backgroundImage) {
         bgImage = ' style="background-image:url(\'' + this.backgroundImage + '\')"';
       }
-      return '<div class="ttw-versatile ' + this.globalName + '">\n              <div class="ttw-versatile__card' + showClass + '">\n            \t\t<span class="ttw-versatile__close">&times;</span>\n            \t\t<div class="ttw-versatile__title">\n            \t\t\t' + this.header + '\n            \t\t</div>\n              \t<div class="ttw-versatile__body"' + bgImage + '>\n              \t  ' + this.body + '\n              \t</div>\n                <div class="ttw-versatile__footer">\n                  ' + this.footer + '\n                </div>\n              </div>\n            \t<span class="ttw-versatile__open' + showArrow + '"><i>&rarr;</i></span>\n            </div>';
+      return '<div class="ttw-versatile ' + this.globalName + '">\n              <div class="ttw-versatile__card' + showClass + '">\n            \t\t<span class="ttw-versatile__close">&times;</span>\n            \t\t' + (this.header ? '<div class="ttw-versatile__title">\n            \t\t\t' + this.header + '\n            \t\t</div>' : '') + '\n              \t<div class="ttw-versatile__body"' + bgImage + '>\n              \t  ' + this.body + '\n              \t</div>\n                ' + (this.footer ? '<div class="ttw-versatile__footer">\n                  ' + this.footer + '\n                </div> ' : '') + '\n              </div>\n            \t<span class="ttw-versatile__open' + showArrow + '"><i>&rarr;</i></span>\n            </div>';
     }
   }]);
 
