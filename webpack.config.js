@@ -94,16 +94,25 @@ return {
     filename: '[name]',
     publicPath: "./dist/"
   },
+  optimization: {
+		// We no not want to minimize our code.
+		minimize: false
+	},
 
   module: {
     rules: [{
-
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-          query: {
-            presets: ['es2015'],
-          }
+        test: /\.jsx?$/,
+        use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            require.resolve('babel-preset-react'),
+            [require.resolve('babel-preset-es2015'), { "modules": false }],
+            require.resolve('babel-preset-stage-0')
+          ]
+        }
+        },
+        exclude: /node_modules\/(?!(domtastic)\/).*/
       },
       {
         test: /\.(scss|css)$/,
